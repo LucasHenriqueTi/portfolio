@@ -1,0 +1,117 @@
+const Hero = () => {
+    return (
+        <section id="hero" style={{
+            minHeight: "100vh",
+            display: "flex",
+            alignItems: "center",
+            padding: "0 4rem",
+            paddingTop: "5rem",
+            position: "relative",
+            zIndex: 1,
+        }}>
+            {/* GLOW BLOB */}
+            <div style={{
+                position: "absolute",
+                width: "600px",
+                height: "600px",
+                borderRadius: "50%",
+                background: "radial-gradient(circle, rgba(108,99,255,0.12) 0%, transparent 70%)",
+                top: "10%",
+                right: "-100px",
+                pointerEvents: "none",
+            }} />
+
+            <div style={{ maxWidth: "900px" }}>
+                <div className="fade-in" style={{
+                    display: "inline-flex",
+                    alignItems: "center",
+                    gap: "0.5rem",
+                    fontSize: "0.8rem",
+                    letterSpacing: "0.12em",
+                    textTransform: "uppercase",
+                    color: "var(--accent2)",
+                    marginBottom: "2rem",
+                    padding: "0.4rem 1rem",
+                    border: "1px solid rgba(167,139,250,0.25)",
+                    borderRadius: "999px",
+                }}>
+                    <div style={{
+                        width: "6px",
+                        height: "6px",
+                        borderRadius: "50%",
+                        background: "var(--accent2)",
+                        animation: "pulse 2s infinite",
+                    }} />
+                    Disponível para novos projetos
+                </div>
+
+                <h1 className="fade-in" style={{
+                    fontFamily: "var(--font-display)",
+                    fontSize: "clamp(3rem, 7vw, 6rem)",
+                    fontWeight: 800,
+                    lineHeight: 1.0,
+                    letterSpacing: "-0.04em",
+                    marginBottom: "1.5rem",
+                    color: "var(--text)",
+                }}>
+                    Lucas<br />
+                    <span style={{
+                        background: "linear-gradient(90deg, var(--accent), var(--accent2))",
+                        WebkitBackgroundClip: "text",
+                        WebkitTextFillColor: "transparent",
+                        backgroundClip: "text",
+                    }}>Henrique.</span>
+                </h1>
+
+                <p className="fade-in" style={{
+                    fontSize: "1.1rem",
+                    color: "var(--muted)",
+                    maxWidth: "560px",
+                    marginBottom: "2.5rem",
+                    lineHeight: 1.75,
+                }}>
+                    Full Stack Developer apaixonado por construir aplicações robustas e escaláveis — do backend ao frontend, com tecnologias modernas e código de qualidade.
+                </p>
+
+                <div className="fade-in" style={{ display: "flex", gap: "1rem", flexWrap: "wrap" }}>
+                    <a href="#projects" style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.8rem 1.75rem",
+                        borderRadius: "8px",
+                        fontSize: "0.9rem",
+                        fontWeight: 500,
+                        textDecoration: "none",
+                        transition: "all 0.2s",
+                        cursor: "pointer",
+                        background: "var(--accent)",
+                        color: "#fff",
+                        border: "1px solid var(--accent)",
+                    }}>
+                        Ver projetos
+                    </a>
+                    <a href="#contact" style={{
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: "0.5rem",
+                        padding: "0.8rem 1.75rem",
+                        borderRadius: "8px",
+                        fontSize: "0.9rem",
+                        fontWeight: 500,
+                        textDecoration: "none",
+                        transition: "all 0.2s",
+                        cursor: "pointer",
+                        background: "transparent",
+                        color: "var(--text)",
+                        border: "1px solid var(--border2)",
+                    }}>
+                        Entrar em contato
+                    </a>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+export default Hero;
