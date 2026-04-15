@@ -1,12 +1,21 @@
 import Navbar from "@/components/Navbar";
+import Hero from "@/components/sections/Hero";
+import About from "@/components/sections/About";
+import Skills from "@/components/sections/Skills";
+import Projects from "@/components/sections/Projects";
+import Contact from "@/components/sections/Contact";
+import Footer from "@/components/sections/Footer";
 
 export default function Home() {
   return (
     <main>
       <Navbar />
-      <div style={{ height: "200vh", paddingTop: "100px", paddingLeft: "2rem" }}>
-        <p style={{ color: "white" }}>Navbar funcionando ✅</p>
-      </div>
+      <Hero />
+      <About />
+      <Skills />
+      <Projects />
+      <Contact />
+      <Footer />
     </main>
   );
 }
