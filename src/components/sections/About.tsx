@@ -1,3 +1,5 @@
+"use client";
+
 const About = () => {
     return (
         <section id="about" style={{
@@ -54,6 +56,16 @@ const About = () => {
                         background: "transparent",
                         color: "var(--text)",
                         border: "1px solid var(--border2)",
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "var(--accent2)";
+                        e.currentTarget.style.color = "var(--accent2)";
+                        e.currentTarget.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "var(--border2)";
+                        e.currentTarget.style.color = "var(--text)";
+                        e.currentTarget.style.transform = "translateY(0)";
                     }}>
                         Fale comigo →
                     </a>
@@ -70,7 +82,16 @@ const About = () => {
                     border: "1px solid var(--border)",
                     borderRadius: "12px",
                     padding: "1.5rem",
-                    transition: "border-color 0.2s",
+                    transition: "all 0.2s",
+                    cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "var(--accent2)";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "var(--border)";
+                    e.currentTarget.style.transform = "translateY(0)";
                 }}>
                     <div style={{
                         fontFamily: "var(--font-display)",
@@ -89,7 +110,16 @@ const About = () => {
                     border: "1px solid var(--border)",
                     borderRadius: "12px",
                     padding: "1.5rem",
-                    transition: "border-color 0.2s",
+                    transition: "all 0.2s",
+                    cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "var(--accent2)";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "var(--border)";
+                    e.currentTarget.style.transform = "translateY(0)";
                 }}>
                     <div style={{
                         fontFamily: "var(--font-display)",
@@ -108,7 +138,16 @@ const About = () => {
                     border: "1px solid var(--border)",
                     borderRadius: "12px",
                     padding: "1.5rem",
-                    transition: "border-color 0.2s",
+                    transition: "all 0.2s",
+                    cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "var(--accent2)";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "var(--border)";
+                    e.currentTarget.style.transform = "translateY(0)";
                 }}>
                     <div style={{
                         fontFamily: "var(--font-display)",
@@ -127,7 +166,16 @@ const About = () => {
                     border: "1px solid var(--border)",
                     borderRadius: "12px",
                     padding: "1.5rem",
-                    transition: "border-color 0.2s",
+                    transition: "all 0.2s",
+                    cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "var(--accent2)";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "var(--border)";
+                    e.currentTarget.style.transform = "translateY(0)";
                 }}>
                     <div style={{
                         fontFamily: "var(--font-display)",

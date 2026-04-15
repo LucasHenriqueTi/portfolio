@@ -1,3 +1,5 @@
+"use client";
+
 const Skills = () => {
     return (
         <section id="skills" style={{
@@ -55,6 +57,17 @@ const Skills = () => {
                         fontSize: "0.9rem",
                         color: "var(--text)",
                         transition: "all 0.2s",
+                        cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "var(--accent2)";
+                        e.currentTarget.style.color = "var(--accent2)";
+                        e.currentTarget.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "var(--border)";
+                        e.currentTarget.style.color = "var(--text)";
+                        e.currentTarget.style.transform = "translateY(0)";
                     }}>
                         <div style={{
                             width: "7px",
@@ -77,6 +90,17 @@ const Skills = () => {
                     fontSize: "0.9rem",
                     color: "var(--muted2)",
                     transition: "all 0.2s",
+                    cursor: "pointer",
+                }}
+                onMouseEnter={(e) => {
+                    e.currentTarget.style.borderColor = "var(--accent2)";
+                    e.currentTarget.style.color = "var(--accent2)";
+                    e.currentTarget.style.transform = "translateY(-2px)";
+                }}
+                onMouseLeave={(e) => {
+                    e.currentTarget.style.borderColor = "var(--border)";
+                    e.currentTarget.style.color = "var(--muted2)";
+                    e.currentTarget.style.transform = "translateY(0)";
                 }}>
                     <div style={{
                         width: "7px",

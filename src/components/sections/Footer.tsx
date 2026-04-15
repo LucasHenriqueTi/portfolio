@@ -1,3 +1,5 @@
+"use client";
+
 const Footer = () => {
     return (
         <footer style={{
@@ -10,7 +12,6 @@ const Footer = () => {
             color: "var(--muted2)",
         }}>
             <span>© 2025 Lucas Henrique. Todos os direitos reservados.</span>
-            <span>Built with 💜</span>
         </footer>
     );
 };

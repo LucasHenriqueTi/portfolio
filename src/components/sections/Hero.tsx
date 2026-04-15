@@ -1,3 +1,5 @@
+"use client";
+
 const Hero = () => {
     return (
         <section id="hero" style={{
@@ -88,6 +90,14 @@ const Hero = () => {
                         background: "var(--accent)",
                         color: "#fff",
                         border: "1px solid var(--accent)",
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.transform = "translateY(-2px)";
+                        e.currentTarget.style.boxShadow = "0 8px 20px rgba(108, 99, 255, 0.4)";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.transform = "translateY(0)";
+                        e.currentTarget.style.boxShadow = "none";
                     }}>
                         Ver projetos
                     </a>
@@ -105,6 +115,16 @@ const Hero = () => {
                         background: "transparent",
                         color: "var(--text)",
                         border: "1px solid var(--border2)",
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "var(--accent2)";
+                        e.currentTarget.style.color = "var(--accent2)";
+                        e.currentTarget.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "var(--border2)";
+                        e.currentTarget.style.color = "var(--text)";
+                        e.currentTarget.style.transform = "translateY(0)";
                     }}>
                         Entrar em contato
                     </a>
