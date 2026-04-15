@@ -107,7 +107,7 @@ const Navbar = () => {
                         e.currentTarget.style.color = "var(--accent)";
                     }}
                 >
-                    Hire me
+                    Contato
                 </a>
 
             </div>

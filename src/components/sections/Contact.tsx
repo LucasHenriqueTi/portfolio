@@ -1,3 +1,5 @@
+"use client";
+
 const Contact = () => {
     return (
         <section id="contact" style={{
@@ -48,6 +50,15 @@ const Contact = () => {
                         color: "var(--text)",
                         fontSize: "0.9rem",
                         transition: "all 0.2s",
+                        cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "var(--accent2)";
+                        e.currentTarget.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "var(--border)";
+                        e.currentTarget.style.transform = "translateY(0)";
                     }}>
                         <div style={{
                             width: "36px",
@@ -81,6 +92,15 @@ const Contact = () => {
                         color: "var(--text)",
                         fontSize: "0.9rem",
                         transition: "all 0.2s",
+                        cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "var(--accent2)";
+                        e.currentTarget.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "var(--border)";
+                        e.currentTarget.style.transform = "translateY(0)";
                     }}>
                         <div style={{
                             width: "36px",

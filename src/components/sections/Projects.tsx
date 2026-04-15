@@ -1,3 +1,5 @@
+"use client";
+
 const Projects = () => {
     return (
         <section id="projects" style={{
@@ -43,6 +45,16 @@ const Projects = () => {
                         minHeight: "200px",
                         textAlign: "center",
                         gap: "0.75rem",
+                        transition: "all 0.2s",
+                        cursor: "pointer",
+                    }}
+                    onMouseEnter={(e) => {
+                        e.currentTarget.style.borderColor = "var(--accent2)";
+                        e.currentTarget.style.transform = "translateY(-2px)";
+                    }}
+                    onMouseLeave={(e) => {
+                        e.currentTarget.style.borderColor = "var(--border)";
+                        e.currentTarget.style.transform = "translateY(0)";
                     }}>
                         <div style={{
                             width: "40px",
