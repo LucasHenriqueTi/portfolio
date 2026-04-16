@@ -5,7 +5,7 @@ const Hero = () => {
         <section id="hero" style={{
             minHeight: "100vh",
             display: "flex",
-            alignItems: "center",
+            alignItems: "flex-start",
             padding: "0 4rem",
             paddingTop: "5rem",
             position: "relative",
@@ -23,28 +23,37 @@ const Hero = () => {
                 pointerEvents: "none",
             }} />
 
-            <div style={{ maxWidth: "900px" }}>
-                <div className="fade-in" style={{
-                    display: "inline-flex",
-                    alignItems: "center",
-                    gap: "0.5rem",
-                    fontSize: "0.8rem",
-                    letterSpacing: "0.12em",
-                    textTransform: "uppercase",
-                    color: "var(--accent2)",
-                    marginBottom: "2rem",
-                    padding: "0.4rem 1rem",
-                    border: "1px solid rgba(167,139,250,0.25)",
-                    borderRadius: "999px",
+            <div style={{
+                maxWidth: "900px",
+                display: "flex",
+                flexDirection: "column",
+                gap: "2rem",
+            }}>
+                <div style={{
+                    width: "100%",
+                    display: "flex",
+                    justifyContent: "flex-start",
                 }}>
                     <div style={{
-                        width: "6px",
-                        height: "6px",
+                        width: "280px",
+                        height: "280px",
                         borderRadius: "50%",
-                        background: "var(--accent2)",
-                        animation: "pulse 2s infinite",
-                    }} />
-                    Disponível para novos projetos
+                        overflow: "hidden",
+                        border: "1px solid rgba(255,255,255,0.12)",
+                        boxShadow: "0 30px 80px rgba(0, 0, 0, 0.25)",
+                        background: "linear-gradient(135deg, rgba(108,99,255,0.12), transparent)",
+                    }}>
+                        <img
+                            src="/1774219385256.jpg"
+                            alt="Foto de Lucas Henrique"
+                            style={{
+                                width: "100%",
+                                height: "100%",
+                                objectFit: "cover",
+                                display: "block",
+                            }}
+                        />
+                    </div>
                 </div>
 
                 <h1 className="fade-in" style={{
