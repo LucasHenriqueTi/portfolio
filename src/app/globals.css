@@ -50,7 +50,40 @@ body::before {
 ::-webkit-scrollbar { width: 5px; }
 ::-webkit-scrollbar-track { background: var(--bg); }
 ::-webkit-scrollbar-thumb { background: var(--bg3); border-radius: 3px; }
+.hero-inner {
+  width: 100%;
+}
 
+.hero-copy {
+  width: 100%;
+}
+
+.hero-photo {
+  width: 100%;
+}
+
+.hero-photo-inner {
+  width: 100%;
+  max-width: 320px;
+}
+
+@media (max-width: 900px) {
+  .hero-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-photo {
+    justify-content: flex-start;
+    margin-top: 2rem;
+  }
+
+  .hero-photo-inner {
+    max-width: 100%;
+    height: auto;
+  }
+}
+
+/* ANIMATIONS */
 /* ANIMATIONS */
 .fade-in {
   opacity: 0;
