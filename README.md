@@ -2,7 +2,7 @@
 
 Um portfólio moderno e responsivo desenvolvido com Next.js, apresentando projetos, habilidades e informações de contato de Lucas Henrique, desenvolvedor Full Stack.
 
-![Portfolio Preview](./public/preview.png)
+![Portfolio Preview](https://portfolio-lucashenriqueti.vercel.app/)
 
 ## ✨ Tecnologias Utilizadas
 
@@ -176,16 +176,12 @@ Este é um projeto pessoal, mas sugestões são bem-vindas!
 4. Push para a branch (`git push origin feature/AmazingFeature`)
 5. Abra um Pull Request
 
-## 📄 Licença
-
-Este projeto está sob a licença MIT. Veja o arquivo `LICENSE` para mais detalhes.
-
 ## 📞 Contato
 
 **Lucas Henrique**
 - LinkedIn: [Seu LinkedIn](https://linkedin.com/in/seu-perfil)
 - GitHub: [Seu GitHub](https://github.com/seu-usuario)
-- Email: seu.email@exemplo.com
+- Email: lucas.henrique.andrade.ti@exemplo.com
 
 ---
 
