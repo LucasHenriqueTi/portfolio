@@ -71,7 +71,7 @@ const Hero = () => {
                         WebkitBackgroundClip: "text",
                         WebkitTextFillColor: "transparent",
                         backgroundClip: "text",
-                    }}>Henrique.</span>
+                    }}>Henrique</span>
                 </h1>
 
                 <p className="fade-in" style={{
