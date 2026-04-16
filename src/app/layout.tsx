@@ -25,6 +25,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="pt-BR" className={`${inter.variable} ${syne.variable}`}>
+      <head>
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.svg" sizes="any" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
+        <meta name="theme-color" content="#0a0a0f" />
+      </head>
       <body>{children}</body>
     </html>
   );
