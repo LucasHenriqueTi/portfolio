@@ -177,10 +177,11 @@ const ProjectModal = ({
                     {/* Conteúdo */}
                     <div style={{
                         display: "grid",
-                        gridTemplateColumns: "1fr 0.7fr",
+                        gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
                         gap: "2rem",
                         padding: "2rem",
                         overflowY: "auto",
+                        alignItems: "start",
                     }}>
                         {/* Carrocel */}
                         <div style={{
@@ -336,6 +337,7 @@ const ProjectModal = ({
                                     justifyContent: "space-between",
                                     marginBottom: "0.75rem",
                                     gap: "1rem",
+                                    flexWrap: "wrap",
                                 }}>
                                     <div style={{ minHeight: "24px" }}>
                                         <AnimatePresence mode="wait" custom={descriptionDirection}>
@@ -393,7 +395,7 @@ const ProjectModal = ({
                                         </button>
                                     </div>
                                 </div>
-                                <div style={{ position: "relative", minHeight: "170px" }}>
+                                <div>
                                     <AnimatePresence mode="wait" custom={descriptionDirection}>
                                         <motion.p
                                             key={`description-${currentDescriptionIndex}`}
@@ -408,8 +410,6 @@ const ProjectModal = ({
                                                 fontSize: "0.95rem",
                                                 whiteSpace: "pre-wrap",
                                                 margin: 0,
-                                                position: "absolute",
-                                                inset: 0,
                                             }}
                                         >
                                             {activeDescription.content}
