@@ -1,11 +1,16 @@
 "use client";
 
 import { useState } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 interface Project {
     id: number;
     title: string;
-    description: string;
+    descriptions: {
+        problem: string;
+        solution: string;
+        participation: string;
+    };
     images: string[];
     technologies: string[];
 }
@@ -37,6 +42,68 @@ const ProjectModal = ({
     onFullscreenNext,
     onFullscreenSelect,
 }: ProjectModalProps) => {
+    const [currentDescriptionIndex, setCurrentDescriptionIndex] = useState(0);
+    const [descriptionDirection, setDescriptionDirection] = useState(1);
+    const [imageDirection, setImageDirection] = useState(1);
+    const [fullscreenDirection, setFullscreenDirection] = useState(1);
+
+    const descriptionSlides = project
+        ? [
+            { label: "Problema", content: project.descriptions.problem },
+            { label: "Solução", content: project.descriptions.solution },
+            { label: "Minha participação", content: project.descriptions.participation },
+        ]
+        : [];
+
+    const handlePrevDescription = () => {
+        setDescriptionDirection(-1);
+        setCurrentDescriptionIndex((prev) =>
+            (prev - 1 + descriptionSlides.length) % descriptionSlides.length
+        );
+    };
+
+    const handleNextDescription = () => {
+        setDescriptionDirection(1);
+        setCurrentDescriptionIndex((prev) => (prev + 1) % descriptionSlides.length);
+    };
+
+    const handleSelectDescription = (index: number) => {
+        setDescriptionDirection(index >= currentDescriptionIndex ? 1 : -1);
+        setCurrentDescriptionIndex(index);
+    };
+
+    const handlePrevImageAnimated = () => {
+        setImageDirection(-1);
+        onPrevImage();
+    };
+
+    const handleNextImageAnimated = () => {
+        setImageDirection(1);
+        onNextImage();
+    };
+
+    const handleSelectImageAnimated = (index: number) => {
+        setImageDirection(index >= currentImageIndex ? 1 : -1);
+        onSelectImage(index);
+    };
+
+    const handleFullscreenPrevAnimated = () => {
+        setFullscreenDirection(-1);
+        onFullscreenPrev();
+    };
+
+    const handleFullscreenNextAnimated = () => {
+        setFullscreenDirection(1);
+        onFullscreenNext();
+    };
+
+    const handleFullscreenSelectAnimated = (index: number) => {
+        const activeIndex = project ? project.images.indexOf(fullscreenImage ?? "") : 0;
+        setFullscreenDirection(index >= activeIndex ? 1 : -1);
+        onFullscreenSelect(index);
+    };
+
+    const activeDescription = descriptionSlides[currentDescriptionIndex];
 
     if (!project) return null;
 
@@ -110,10 +177,11 @@ const ProjectModal = ({
                     {/* Conteúdo */}
                     <div style={{
                         display: "grid",
-                        gridTemplateColumns: "1fr 0.7fr",
+                        gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))",
                         gap: "2rem",
                         padding: "2rem",
                         overflowY: "auto",
+                        alignItems: "start",
                     }}>
                         {/* Carrocel */}
                         <div style={{
@@ -129,29 +197,33 @@ const ProjectModal = ({
                                 borderRadius: "12px",
                                 border: "1px solid var(--border)",
                             }}>
-                                <img
-                                    src={project.images[currentImageIndex]}
-                                    alt={`${project.title} - Imagem ${currentImageIndex + 1}`}
-                                    onClick={() => onSetFullscreenImage(project.images[currentImageIndex])}
-                                    style={{
-                                        width: "100%",
-                                        height: "100%",
-                                        objectFit: "cover",
-                                        cursor: "pointer",
-                                        transition: "transform 0.2s ease",
-                                    }}
-                                    onMouseEnter={(e) => {
-                                        (e.target as HTMLElement).style.transform = "scale(1.02)";
-                                    }}
-                                    onMouseLeave={(e) => {
-                                        (e.target as HTMLElement).style.transform = "scale(1)";
-                                    }}
-                                />
+                                <AnimatePresence mode="wait" custom={imageDirection}>
+                                    <motion.img
+                                        key={`${project.id}-${currentImageIndex}`}
+                                        src={project.images[currentImageIndex]}
+                                        alt={`${project.title} - Imagem ${currentImageIndex + 1}`}
+                                        onClick={() => onSetFullscreenImage(project.images[currentImageIndex])}
+                                        custom={imageDirection}
+                                        initial={{ opacity: 0, x: imageDirection > 0 ? 36 : -36, scale: 0.98 }}
+                                        animate={{ opacity: 1, x: 0, scale: 1 }}
+                                        exit={{ opacity: 0, x: imageDirection > 0 ? -36 : 36, scale: 0.98 }}
+                                        transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                                        whileHover={{ scale: 1.02 }}
+                                        style={{
+                                            width: "100%",
+                                            height: "100%",
+                                            objectFit: "cover",
+                                            cursor: "pointer",
+                                            position: "absolute",
+                                            inset: 0,
+                                        }}
+                                    />
+                                </AnimatePresence>
                                 {/* Botões de navegação */}
                                 {project.images.length > 1 && (
                                     <>
                                         <button
-                                            onClick={onPrevImage}
+                                            onClick={handlePrevImageAnimated}
                                             style={{
                                                 position: "absolute",
                                                 left: "1rem",
@@ -180,7 +252,7 @@ const ProjectModal = ({
                                             ←
                                         </button>
                                         <button
-                                            onClick={onNextImage}
+                                            onClick={handleNextImageAnimated}
                                             style={{
                                                 position: "absolute",
                                                 right: "1rem",
@@ -220,7 +292,7 @@ const ProjectModal = ({
                                 {project.images.map((_, idx) => (
                                     <div
                                         key={idx}
-                                        onClick={() => onSelectImage(idx)}
+                                        onClick={() => handleSelectImageAnimated(idx)}
                                         style={{
                                             width: "8px",
                                             height: "8px",
@@ -259,14 +331,114 @@ const ProjectModal = ({
                                 }}>
                                     Descrição
                                 </h3>
-                                <p style={{
-                                    color: "var(--muted)",
-                                    lineHeight: 1.8,
-                                    fontSize: "0.95rem",
-                                    whiteSpace: "pre-wrap",
+                                <div style={{
+                                    display: "flex",
+                                    alignItems: "center",
+                                    justifyContent: "space-between",
+                                    marginBottom: "0.75rem",
+                                    gap: "1rem",
+                                    flexWrap: "wrap",
                                 }}>
-                                    {project.description}
-                                </p>
+                                    <div style={{ minHeight: "24px" }}>
+                                        <AnimatePresence mode="wait" custom={descriptionDirection}>
+                                            <motion.p
+                                                key={`label-${currentDescriptionIndex}`}
+                                                custom={descriptionDirection}
+                                                initial={{ opacity: 0, x: descriptionDirection > 0 ? 24 : -24 }}
+                                                animate={{ opacity: 1, x: 0 }}
+                                                exit={{ opacity: 0, x: descriptionDirection > 0 ? -24 : 24 }}
+                                                transition={{ duration: 0.28, ease: [0.22, 1, 0.36, 1] }}
+                                                style={{
+                                                    color: "var(--text)",
+                                                    fontSize: "1rem",
+                                                    fontWeight: 600,
+                                                    margin: 0,
+                                                }}
+                                            >
+                                                {activeDescription.label}
+                                            </motion.p>
+                                        </AnimatePresence>
+                                    </div>
+
+                                    <div style={{
+                                        display: "flex",
+                                        alignItems: "center",
+                                        gap: "0.5rem",
+                                    }}>
+                                        <button
+                                            onClick={handlePrevDescription}
+                                            style={{
+                                                width: "30px",
+                                                height: "30px",
+                                                borderRadius: "50%",
+                                                border: "1px solid var(--border)",
+                                                background: "var(--bg3)",
+                                                color: "var(--text)",
+                                                cursor: "pointer",
+                                            }}
+                                        >
+                                            ←
+                                        </button>
+                                        <button
+                                            onClick={handleNextDescription}
+                                            style={{
+                                                width: "30px",
+                                                height: "30px",
+                                                borderRadius: "50%",
+                                                border: "1px solid var(--border)",
+                                                background: "var(--bg3)",
+                                                color: "var(--text)",
+                                                cursor: "pointer",
+                                            }}
+                                        >
+                                            →
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    <AnimatePresence mode="wait" custom={descriptionDirection}>
+                                        <motion.p
+                                            key={`description-${currentDescriptionIndex}`}
+                                            custom={descriptionDirection}
+                                            initial={{ opacity: 0, x: descriptionDirection > 0 ? 26 : -26 }}
+                                            animate={{ opacity: 1, x: 0 }}
+                                            exit={{ opacity: 0, x: descriptionDirection > 0 ? -26 : 26 }}
+                                            transition={{ duration: 0.32, ease: [0.22, 1, 0.36, 1] }}
+                                            style={{
+                                                color: "var(--muted)",
+                                                lineHeight: 1.8,
+                                                fontSize: "0.95rem",
+                                                whiteSpace: "pre-wrap",
+                                                margin: 0,
+                                            }}
+                                        >
+                                            {activeDescription.content}
+                                        </motion.p>
+                                    </AnimatePresence>
+                                </div>
+                                <div style={{
+                                    display: "flex",
+                                    gap: "0.5rem",
+                                    marginTop: "0.75rem",
+                                }}>
+                                    {descriptionSlides.map((slide, idx) => (
+                                        <button
+                                            key={slide.label}
+                                            onClick={() => handleSelectDescription(idx)}
+                                            style={{
+                                                border: idx === currentDescriptionIndex ? "1px solid var(--accent2)" : "1px solid var(--border)",
+                                                background: idx === currentDescriptionIndex ? "rgba(108, 99, 255, 0.15)" : "var(--bg3)",
+                                                color: idx === currentDescriptionIndex ? "var(--accent2)" : "var(--muted)",
+                                                borderRadius: "999px",
+                                                fontSize: "0.75rem",
+                                                padding: "0.25rem 0.6rem",
+                                                cursor: "pointer",
+                                            }}
+                                        >
+                                            {slide.label}
+                                        </button>
+                                    ))}
+                                </div>
                             </div>
 
                             <div>
@@ -339,21 +511,31 @@ const ProjectModal = ({
                         }}
                         onClick={(e) => e.stopPropagation()}
                     >
-                        <img
-                            src={fullscreenImage}
-                            alt="Imagem em fullscreen"
-                            style={{
-                                width: "100%",
-                                height: "100%",
-                                objectFit: "contain",
-                            }}
-                        />
+                        <AnimatePresence mode="wait" custom={fullscreenDirection}>
+                            <motion.img
+                                key={fullscreenImage}
+                                src={fullscreenImage}
+                                alt="Imagem em fullscreen"
+                                custom={fullscreenDirection}
+                                initial={{ opacity: 0, x: fullscreenDirection > 0 ? 40 : -40, scale: 0.98 }}
+                                animate={{ opacity: 1, x: 0, scale: 1 }}
+                                exit={{ opacity: 0, x: fullscreenDirection > 0 ? -40 : 40, scale: 0.98 }}
+                                transition={{ duration: 0.35, ease: [0.22, 1, 0.36, 1] }}
+                                style={{
+                                    width: "100%",
+                                    height: "100%",
+                                    objectFit: "contain",
+                                    position: "absolute",
+                                    inset: 0,
+                                }}
+                            />
+                        </AnimatePresence>
 
                         {/* Botões de navegação */}
                         {project.images.length > 1 && (
                             <>
                                 <button
-                                    onClick={onFullscreenPrev}
+                                    onClick={handleFullscreenPrevAnimated}
                                     style={{
                                         position: "absolute",
                                         left: "1rem",
@@ -382,7 +564,7 @@ const ProjectModal = ({
                                     ←
                                 </button>
                                 <button
-                                    onClick={onFullscreenNext}
+                                    onClick={handleFullscreenNextAnimated}
                                     style={{
                                         position: "absolute",
                                         right: "1rem",
@@ -426,7 +608,7 @@ const ProjectModal = ({
                                 {project.images.map((_, idx) => (
                                     <div
                                         key={idx}
-                                        onClick={() => onFullscreenSelect(idx)}
+                                        onClick={() => handleFullscreenSelectAnimated(idx)}
                                         style={{
                                             width: "10px",
                                             height: "10px",
