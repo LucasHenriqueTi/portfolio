@@ -17,13 +17,34 @@ const Projects = () => {
     const [fullscreenImage, setFullscreenImage] = useState<string | null>(null);
     const [fullscreenIndex, setFullscreenIndex] = useState(0);
 
-    const projects = [
+    const projects: Project[] = [
         {
             id: 1,
             title: "Estacione",
             description: "Sistema de gestão e controle de estacionamento. Desenvolvido para o Governo de Pernambuco, permitindo o gerenciamento de órgãos, usuários, adesivos e espaços de estacionamento. Interface intuitiva seguindo os padrões de design do Governo de Pernambuco, com dashboard administrativo e geração de relatórios para monitoramento em tempo real.\n\nAtuei ativamente como desenvolvedor Full Stack e gestor de projeto, gerenciando a equipe e atuando como SCRUM master, garantindo a entrega de qualidade e o cumprimento dos objetivos do projeto.",
-            images: ["/projetos/estacione/inicio.png", "/projetos/estacione/login.png"],
-            technologies: ["Next.js", "Tailwind CSS", "Nest.js", "TypeORM", "PostgreSQL", "Docker"],
+            images: ["/projetos/estacione/login.png", "/projetos/estacione/inicio.png"],
+            technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Nest.js", "TypeORM", "PostgreSQL", "Docker"],
+        },
+        {
+            id: 2,
+            title: "GDRH",
+            description: "Sistema administrativo para gestão de recursos humanos, com foco em centralizar indicadores, cadastros e rotinas operacionais em uma única plataforma. O projeto reúne dashboard com métricas, gestão de colaboradores, cargos, gratificações, setores, lotações, órgãos externos, perfis de acesso, logs de auditoria e controle de versões, seguindo a identidade visual do Governo de Pernambuco.\n\nAtuei na construção das telas administrativas e na organização da experiência do usuário, priorizando clareza na navegação, leitura rápida dos dados e eficiência nos fluxos internos do módulo de RH.",
+            images: [
+                "/projetos/rh/login.png",
+                "/projetos/rh/dashboard.jpeg",
+                "/projetos/rh/dashboard escuro.jpeg",
+                "/projetos/rh/colaboradores.jpeg",
+                "/projetos/rh/cadastro colaborador.jpeg",
+                "/projetos/rh/cargos.jpeg",
+                "/projetos/rh/gratificações.jpeg",
+                "/projetos/rh/lotações.jpeg",
+                "/projetos/rh/logs.jpeg",
+                "/projetos/rh/orgões externos.jpeg",
+                "/projetos/rh/perfils.jpeg",
+                "/projetos/rh/setores.jpeg",
+                "/projetos/rh/versões.jpeg"
+            ],
+            technologies: ["Vite.js", "TypeScript",  "Tailwind CSS", "Tanstack Query", "Zod", "Firebase" ],
         },
     ];
 
@@ -109,7 +130,7 @@ const Projects = () => {
                 color: "var(--muted)",
                 maxWidth: "500px",
                 marginBottom: "3rem",
-            }}>Alguns projetos que desenvolvi. Em breve mais serão adicionados.</p>
+            }}>Alguns projetos reais que participei do desenvolvimento.</p>
 
             <div style={{
                 display: "grid",
@@ -148,7 +169,7 @@ const Projects = () => {
                             backgroundColor: "var(--bg3)",
                         }}>
                             <img
-                                src={project.images[1]}
+                                src={project.images[0]}
                                 alt={`${project.title} preview`}
                                 style={{
                                     width: "100%",
