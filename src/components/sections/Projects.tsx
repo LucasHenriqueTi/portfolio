@@ -6,7 +6,11 @@ import ProjectModal from "@/components/ProjectModal";
 interface Project {
     id: number;
     title: string;
-    description: string;
+    descriptions: {
+        problem: string;
+        solution: string;
+        participation: string;
+    };
     images: string[];
     technologies: string[];
 }
@@ -21,14 +25,22 @@ const Projects = () => {
         {
             id: 1,
             title: "Estacione",
-            description: "Sistema de gestão e controle de estacionamento. Desenvolvido para o Governo de Pernambuco, permitindo o gerenciamento de órgãos, usuários, adesivos e espaços de estacionamento. Interface intuitiva seguindo os padrões de design do Governo de Pernambuco, com dashboard administrativo e geração de relatórios para monitoramento em tempo real.\n\nAtuei ativamente como desenvolvedor Full Stack e gestor de projeto, gerenciando a equipe e atuando como SCRUM master, garantindo a entrega de qualidade e o cumprimento dos objetivos do projeto.",
+            descriptions: {
+                problem: "Diversos órgãos do estado enfrentavam problemas críticos na gestão de estacionamento: ausência de controle de entrada e saída de veículos, impossibilidade de identificação dos colaboradores e seus veículos, falta de auditoria sobre uso das vagas e dificuldade em gerar relatórios personalizados para a alta gestão.",
+                solution: "Desenvolvemos uma plataforma Web/App intuitiva com controle de acesso ao estacionamento via QRCode e identificação visual por adesivos vinculados ao órgão, gestão de vagas, sistema de registro para visitantes, e dashboard com relatórios customizáveis em tempo real para auditorias e tomadas de decisão.",
+                participation: "Atuei como desenvolvedor Full Stack e gestor de projeto, coordenando a equipe e executando o papel de Scrum Master para garantir entregas com qualidade e alinhadas aos objetivos do cliente.",
+            },
             images: ["/projetos/estacione/login.png", "/projetos/estacione/inicio.png"],
             technologies: ["Next.js", "TypeScript", "Tailwind CSS", "Nest.js", "TypeORM", "PostgreSQL", "Docker"],
         },
         {
             id: 2,
             title: "GDRH",
-            description: "Sistema administrativo para gestão de recursos humanos, com foco em centralizar indicadores, cadastros e rotinas operacionais em uma única plataforma. O projeto reúne dashboard com métricas, gestão de colaboradores, cargos, gratificações, setores, lotações, órgãos externos, perfis de acesso, logs de auditoria e controle de versões, seguindo a identidade visual do Governo de Pernambuco.\n\nAtuei na construção das telas administrativas e na organização da experiência do usuário, priorizando clareza na navegação, leitura rápida dos dados e eficiência nos fluxos internos do módulo de RH.",
+            descriptions: {
+                problem: "O RH não possuía uma base centralizada de colaboradores: cada setor mantinha seus próprios controles, com múltiplas planilhas desatualizadas e incompletas. Esse cenário dificultava a manutenção dos dados dos funcionários, comprometia a consistência das informações e tornava ineficiente a geração de relatórios estratégicos para a alta gestão.",
+                solution: "Desenvolvemos uma aplicação web para ciclo completo de gestão de colaboradores, incluindo cadastro, atualização, desligamento e organização de cargos, gratificações, setores, lotações, órgãos externos, perfis de acesso, logs e versões do sistema. A solução também passou a gerar relatórios avançados com parâmetros personalizados e cruzamento de dados.",
+                participation: "Atuei como desenvolvedor Frontend, responsável por autenticação, implementação de regras de negócio no cliente, otimização e gerenciamento de queries, validações de inputs e definições de proteção de rotas.",
+            },
             images: [
                 "/projetos/rh/login.png",
                 "/projetos/rh/dashboard.jpeg",
@@ -203,7 +215,7 @@ const Projects = () => {
                                 lineHeight: 1.6,
                                 marginBottom: "1rem",
                             }}>
-                                {project.description.substring(0, 100)}...
+                                {project.descriptions.problem.substring(0, 100)}...
                             </p>
                             <div style={{
                                 display: "flex",
